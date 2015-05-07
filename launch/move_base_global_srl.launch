@@ -1,8 +1,4 @@
 <launch>
-<rosparam command="load" file="$(find social_compliance_layer)/cfg/simple_behaviors.yaml" />
-
-
-<include file="$(find spencer_tracking_utils)/launch/filter_tracks_by_distance.launch" />
 
 
 <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen" >

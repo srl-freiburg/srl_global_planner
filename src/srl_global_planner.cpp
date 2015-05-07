@@ -550,28 +550,7 @@ void Srl_global_planner::callbackObstacles(const nav_msgs::OccupancyGrid::ConstP
 
 }
 
-/// ==================================================================================
-/// callbackAllAgents(const pedsim_msgs::AllAgentsState::ConstPtr& msg)
-/// callback to read the agents positions
-/// ==================================================================================
-void Srl_global_planner::callbackAllTracks(const spencer_tracking_msgs::TrackedPersons::ConstPtr& msg){
 
-
-/// Reading Agents Poses
-    agents_position.clear();
-    double curr_or=0;
-
-    for(size_t i=0; i<msg->tracks.size(); i++){
-        curr_or=tf::getYaw(msg->tracks[i].pose.pose.orientation);
-        agents_position.push_back(Thuman(msg->tracks[i].pose.pose.position.x,msg->tracks[i].pose.pose.position.y,curr_or,msg->tracks[i].track_id,0));
-
-
-     }
-
-
-
-
-}
 
 
 
@@ -1011,40 +990,6 @@ if( DEB_RRT>0)
 
 
 
-    double ax,ay,dist,hor;
-    hor=5;
-
-    int j=0;
-    if(READ_AGENTS){
-
-       if(DEB_RRT>0)
-          ROS_INFO("Loading Agents");
-
-        if(DEB_RRT>0)
-            ROS_INFO("Number of agents,  %d Agents",(int)agents_position.size());
-
-        for(size_t hi=0; hi<agents_position.size(); hi++){
-
-                region<2> pedestrian;
-                ax= agents_position[hi].x;
-                ay= agents_position[hi].y;
-                pedestrian.center[0] = ax;
-                pedestrian.center[1] = ay;
-
-                pedestrian.size[0] = agents_size_;
-                pedestrian.size[1] = agents_size_;
-
-                collision_checker.add_obstacle (pedestrian);
-                j++;
-
-                if( DEB_RRT>0)
-                  ROS_INFO("Human poses: %f,%f ", pedestrian.center[0],pedestrian.center[1]);
-
-            }
-    }
-if (DEB_RRT>0)
-    ROS_DEBUG_STREAM("Number of agents added to the planner: "<<j);
-
 
 
     double obx,oby;
@@ -1167,7 +1112,8 @@ if(DEB_RRT>0)
 
 
 
-
+if(TIMECOUNTER){
+    
     while(timep<curr_MAXTIME && min_time_reachability.cntUpdates<curr_NUM_UPDATES ){
 
 
@@ -1563,7 +1509,6 @@ void  Srl_global_planner::initialize(std::string name, costmap_2d::Costmap2DROS*
 
         sub_obstacles_=nh_.subscribe("/move_base_node/global_costmap/costmap",1, &Srl_global_planner::callbackObstacles,this);
 
-        sub_all_agents_=nh_.subscribe("/spencer/perception/tracked_persons",1, &Srl_global_planner::callbackAllTracks,this);
 
         // subscriberss TODO!!!!
         sub_goal_=nh_.subscribe("/move_base_simple/goal",1,&Srl_global_planner::callbackSetGoal,this);

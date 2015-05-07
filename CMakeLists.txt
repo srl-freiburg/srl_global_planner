@@ -7,9 +7,6 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
   nav_core
   nav_msgs
-  spencer_tracking_msgs
-  spencer_nav_msgs
-  spencer_control_msgs
   pluginlib
   costmap_2d
   roscpp
@@ -42,10 +39,6 @@ catkin_package(
     visualization_msgs
     costmap_2d
     pluginlib
-
-    spencer_tracking_msgs
-    spencer_nav_msgs
-    spencer_control_msgs
 
   LIBRARIES
     srl_global_planner
