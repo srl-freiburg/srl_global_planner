@@ -59,4 +59,8 @@ Clone the package into you catkin workspace
 
 
 ## Developers
-* Luigi Palmieri (https://github.com/palmieri)
+* Luigi Palmieri (https://github.com/palmieri, palmieri(at)informatik.uni-freiburg.de)
+
+## TODOs:
+* Improve documentation
+* Include RRTx
