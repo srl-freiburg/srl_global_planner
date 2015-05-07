@@ -1,5 +1,5 @@
 # srl_global_planner
-The SRL_GLOBAL_PLANNER ROS package provides an implementation of the sampling based motion planners (RRT, RGG, RRT*, Theta*-RRT) as global planner plugin for move_base, a ROS framework. Please refer to http://wiki.ros.org/move_base , for a detailed description of the move_base framework.
+The SRL_GLOBAL_PLANNER ROS package provides an implementation of the sampling based motion planners (RRT, RGG, RRT*, Theta**-RRT) as global planner plugin for move_base, a ROS framework. Please refer to http://wiki.ros.org/move_base , for a detailed description of the move_base framework.
 
 ## Requirements
 * ROS (including visualization rools -> rviz), tested on Indigo and Hydro
