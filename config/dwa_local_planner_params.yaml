@@ -1,0 +1,42 @@
+# default parameters for testing the dwa planner from ros
+
+acc_lim_th: 3.8
+acc_lim_x: 3.5
+acc_lim_y: 0.0
+
+max_vel_x: 0.7
+min_vel_x: 0.0
+
+max_vel_y: 0.0
+min_vel_y: 0.0
+
+max_trans_vel: 0.7
+min_trans_vel: 0.01
+
+max_rot_vel: 0.9
+min_rot_vel: 0.1
+
+#sim_time: 1.0
+#sim_granularity: 0.05
+
+goal_distance_bias: 32.0
+path_distance_bias: 48.0
+occdist_scale: 0.05
+
+#stop_time_buffer: 0.25
+#oscillation_reset_dist: 0.05
+
+forward_point_distance: 0.325
+
+scaling_speed: 0.25
+max_scaling_factor: 0.2
+
+vx_samples: 3
+vy_samples: 10
+vtheta_samples: 20
+
+xy_goal_tolerance: 0.4
+yaw_goal_tolerance: 0.1
+
+rot_stopped_vel: 0.1
+trans_stopped_vel: 0.1

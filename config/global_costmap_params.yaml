@@ -1,0 +1,44 @@
+# do not use rolling window version of costmap, as global costmap is static
+rolling_window: false
+# global map will be publish at modrate frequency of 10
+publish_frequency: 10.0
+# resolution of the map in meters/cell
+resolution: 0.20
+# global costmap will operate in the map frame, transform between this and robot-base frame must be available
+global_frame: occ_map
+
+static_map: true
+
+# name of the frame at base-link of the spencer robot
+robot_base_frame: base_link
+# specifications for the footprint of the robot as polygon (in meters)
+# footprint: [ [0.756, 0.455], [0.756, -0.455], [-0.791, -0.455], [-0.791, 0.455] ] # real footprint
+footprint: [[0.796, 0.495], [0.796, -0.495], [-0.831, -0.495], [-0.831, 0.495] ] # larger footprint
+#footprint: [[0.39, 0.27], [0.39, -0.27], [0.24, -0.41], [-0.24, -0.41], [-0.39, -0.27], [-0.39, 0.27], [-0.24, 0.41], [0.24, 0.41]]
+origin_x: 0.0
+origin_y: 0.0
+
+# for global plannign we will use static-map, obstacles, inflation and hanp layers
+plugins:
+ - {name: static_map, type: "costmap_2d::StaticLayer"}
+# - {name: obstacles, type: "costmap_2d::ObstacleLayer"}
+ - {name: inflater, type: "costmap_2d::InflationLayer"}
+ - {name: social_compliance, type: "social_compliance_layer::SocialComplianceLayer"}
+
+# NOTE!! that including obstacles it may happen that in narrow corridors echos from the laser scanner may appear as obstacles!
+# Not needed anyway cause using the static map layer
+#obstacles:
+#     observation_sources: /spencer/sensors/laser_rear/echo0  /spencer/sensors/laser_front/echo0
+#     /spencer/sensors/laser_rear/echo0: {data_type: LaserScan, sensor_frame: /laser_rear_link, marking: true, clearing: true}
+#     /spencer/sensors/laser_front/echo0: {data_type: LaserScan, sensor_frame: /laser_front_link, marking: true, clearing: true}
+
+inflater:
+    observation_sources: /spencer/sensors/laser_rear/echo0 /spencer/sensors/laser_front/echo0
+    /spencer/sensors/laser_rear/echo0: {data_type: LaserScan, sensor_frame: /laser_rear_link, marking: true, clearing: true, map_type: costmap}
+    /spencer/sensors/laser_front/echo0: {data_type: LaserScan, sensor_frame: /laser_front_link, marking: true, clearing: true, map_type: costmap}
+    inflation_radius: 0.1
+
+social_compliance:
+    observation_sources: /spencer/perception/tracked_persons_filtered_by_distance /spencer/perception/tracked_groups
+    /spencer/perception/tracked_persons_filtered_by_distance: {data_type: TrackedPersons, sensor_frame: odom, marking: true, clearing: true, obstacle_range: 30, raytrace_range: 30, map_type: costmap}
+    /spencer/perception/tracked_groups: {data_type: TrackedGroups, sensor_frame: odom, marking: true, clearing: true, obstacle_range: 30, raytrace_range: 30, map_type: costmap}

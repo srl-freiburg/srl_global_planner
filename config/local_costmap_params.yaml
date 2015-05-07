@@ -1,0 +1,31 @@
+# use rolling window version of costmap, as local costmap is not static
+rolling_window: true
+# local map will be publish at modrate frequency of 10
+publish_frequency: 10.0
+# width of the map in meters
+width: 5.0
+# height of the map in meters
+height: 5.0
+# resolution of the map in meters/cell
+resolution: 2.5
+# local costmap will operate in the map frame, transform between this and robot-base frame must be available
+global_frame: map
+
+static_map: true
+
+# name of the frame at base-link of the spencer robot
+robot_base_frame: base_link
+# specifications for the footprint of the robot as polygon (in meters)
+# footprint: [ [0.756, 0.455], [0.756, -0.455], [-0.791, -0.455], [-0.791, 0.455] ] # real footprint
+footprint: [[0.796, 0.495], [0.796, -0.495], [-0.831, -0.495], [-0.831, 0.495] ] # larger footprint
+
+#footprint: [[0.39, 0.27], [0.39, -0.27], [0.24, -0.41], [-0.24, -0.41], [-0.39, -0.27], [-0.39, 0.27], [-0.24, 0.41], [0.24, 0.41]]
+# for local plannign we will use only obstacles, inflation layers
+plugins:
+ - {name: static_map, type: "costmap_2d::StaticLayer"}
+# - {name: inflater, type: "costmap_2d::InflationLayer"}
+# sources for obstacle observation and their data types
+# obstacles:
+#     observation_sources: /spencer/sensors/laser_front/echo0
+#     /spencer/sensors/laser_front/echo0: {data_type: LaserScan, sensor_frame: /laser_front_link, marking: true, clearing: true, obstacle_range: 6, raytrace_range: 2}
+#    track_unknown_space: true

@@ -1,0 +1,13 @@
+<pre class="code">
+<span class="srcline"><span class="lineno"><a href="1,58" id="srcline58">58</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,59" id="srcline59">59</a></span><span class="line"><span class="comment">% ===== MODULE FUNCTIONS ========</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,60" id="srcline60">60</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,61" id="srcline61">61</a></span><span class="line"><span class="comment">% Map Minimum and Maximum Input Processing Function</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,62" id="srcline62">62</a></span><span class="line"><span class="keyword">function</span> <span class="var type1" id="S27T1U641">y</span> = mapminmax_apply(<span class="var type1" id="S28T1U644">x</span>,<span class="var type1" id="S29T1U645">settings_gain</span>,<span class="var type1" id="S30T1U646">settings_xoffset</span>,<span class="var type1" id="S31T2U647">settings_ymin</span>)</span></span>
+<span class="srcline"><span class="lineno"><a href="1,63" id="srcline63">63</a></span><span class="line">  <span class="mxinfo" id="T1:U6"><span class="var type1" id="S27T1U650">y</span> = <span class="mxinfo" id="T1:U8">bsxfun(@minus,<span class="var type1" id="S28T1U655">x</span>,<span class="var type1" id="S30T1U656">settings_xoffset</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,64" id="srcline64">64</a></span><span class="line">  <span class="mxinfo" id="T1:U11"><span class="var type1" id="S27T1U659">y</span> = <span class="mxinfo" id="T1:U13">bsxfun(@times,<span class="var type1" id="S27T1U664">y</span>,<span class="var type1" id="S29T1U665">settings_gain</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,65" id="srcline65">65</a></span><span class="line">  <span class="mxinfo" id="T1:U16"><span class="var type1" id="S27T1U668">y</span> = <span class="mxinfo" id="T1:U18">bsxfun(@plus,<span class="var type1" id="S27T1U673">y</span>,<span class="var type1" id="S31T2U674">settings_ymin</span>)</span></span>;</span></span>
+<span class="srcline"><span class="lineno"><a href="1,66" id="srcline66">66</a></span><span class="line"><span class="keyword">end</span></span></span>
+<span class="srcline"><span class="lineno"><a href="1,67" id="srcline67">67</a></span><span class="line"></span></span>
+<span class="srcline"><span class="lineno"><a href="1,68" id="srcline68">68</a></span><span class="line"><span class="comment">% Sigmoid Symmetric Transfer Function</span></span></span>
+</pre>

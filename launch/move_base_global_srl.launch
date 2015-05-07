@@ -1,0 +1,281 @@
+<launch>
+<rosparam command="load" file="$(find social_compliance_layer)/cfg/simple_behaviors.yaml" />
+
+
+<include file="$(find spencer_tracking_utils)/launch/filter_tracks_by_distance.launch" />
+
+
+<node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen" >
+
+
+        <param name="planner_frame" value="occ_map" type="string"/>
+        <param name="local_planner_frame" value="odom" type="string"/>
+        <param name="map_topic" value="/occ_map" type="string"/>
+
+
+        <!-- planner related parameters -->
+        <!-- WARNING: parameters related to the scene1.xml file -->
+        <param name="x1" value="-8.0" type="double"/>  <!-- xscene=x2-x1, yscene=y2-y1 -->
+        <param name="y1" value="-8.0" type="double"/>
+        <param name="x2" value="8.0" type="double"/>
+        <param name="y2" value="8.0" type="double"/>
+
+        <param name="cell_size_x" value="1" type="double"/>
+        <param name="cell_size_y" value="1" type="double"/>
+
+        <param name="minx" value="0" type="double" />
+        <param name="miny" value="0" type="double" />
+        <param name="grid_width" value="50" type="double" />
+        <param name="grid_height" value="30" type="double" />
+        <param name="cell_width" value="1" type="double"/>
+        <param name="cell_height" value="1" type="double"/>
+        <param name="PUBLISH_GRID" value="1" type="int"/>
+
+
+        <!-- Set Goal Tollerance in the RRT planner -->
+        <param name="GOAL_TOLL" value="0.5" type="double"/>
+        <!-- Cost associated to Theta* -->
+
+        <!-- True to select Theta* (1), False (0) to select A* -->
+        <param name="select_globalplanner" value="1" type="int"/>
+        <!-- Minimum cell probability to accept a cell as obstacle in the Grid Planner (see costmap and grid map msg documentation) -->
+        <param name="LEVEL_OBSTACLE_" value="1" type="int"/>
+        <!-- Minimum cell cost to have to accept a cell as obstacle in the RRT Planner(see costmap documentation) -->
+        <param name="LEVEL_COLLCHECKER_OBSTACLE_" value="38" type="int"/>
+
+        <!-- Maximum number of search steps allowed -->
+        <param name="MAX_LIMIT_SEARCH_STEPS" value="10000" type="int"/>
+
+        <param name="min_cost_p" value="0.5" type="double"/>
+
+        <!-- Frequency of the Grid planner -->
+        <param name="grid_planner_f" value="5" type="double"/>
+
+        <!--
+        Choose between the type of stop condition
+        value=1, based on max number of seconds allowed
+        value=0, based on max number of RRT iterations allowed
+        -->
+        <param name="TIMECOUNTER" value="1" type="int"/>
+        <param name="MAXTIME" value="2" type="double"/>
+
+        <!--
+        WHAT_TO_SHOW = 0 Display nothing
+        WHAT_TO_SHOW = 1 Display all the samples
+        WHAT_TO_SHOW = 2 Display the nearest vertices
+        -->
+        <param name="WHATTOSHOW" value="1" type="int"/>
+
+
+        <!-- Rectangle Collision Checker Params for Daryl Robot-->
+        <param name="PARALLEL" value="0" type="int"/>
+        <param name="K" value="5" type="int"/>
+        <param name="RAD_OBST" value="2.5" type="double"/>
+        <!-- <param name="ROBOT_LENGTH" value="0.78" type="double"/>
+        <param name="ROBOT_WIDTH" value="0.55" type="double"/>
+        -->
+        <!-- Testing on IRL -->
+        <param name="ROBOT_LENGTH" value="0.30" type="double"/>
+        <param name="ROBOT_WIDTH" value="0.30" type="double"/>
+
+        <!--
+        According to the TIMECOUNTER
+        it represents:
+        - max number of seconds allowed or
+        - max number of RRT iterations allowed
+        -->
+        <param name="max_iterations" value="100" type="int"/>
+
+
+
+        <!-- Not currently used -->
+        <!--
+        Choose between the type of distance metric
+        value=2, Regression Neural Network
+        value=1, Regression Basis Function Model
+        value=0, POSQ 0.5
+        value=3, Euclidean Distance
+        value=4, IRL Cost
+        value=5, IRL scaled + Smoothness
+        -->
+        <param name="SELECT_FUNC" value="1" type="int"/>
+        <param name="SCALING_IRL" value="1" type="double"/>
+        <param name="COST_DISPLAY" value="0" type="int"/>
+
+
+        <!--
+        Stop the planner at the first found solution
+        value=1
+        -->
+        <param name="FIRSTSOLUTION" value="1" type="int"/>
+
+        <param name="NRUNS" value="1" type="int" />
+
+        <param name="NUMBER_UPDATE_TRAJ" value="2" type="int"/>
+
+        <param name="NOANIM" value="0" type="int"/>
+
+        <param name="DISPLAY_METRICS" value="0" type="int"/>
+
+
+        <!--
+        Disply Debug info
+        value=1
+        -->
+        <param name="DEB_RRT" value="1" type="int"/>
+
+
+        <!-- If GOALPARAM == 1 the goal is loaded from parameters  -->
+        <param name="GOALPARAM" value="0" type="int"/>
+
+        <!-- planner related parameters: select the type of planner you prefer.
+        value=0 RRT
+        value=1 RRT* with only one phase
+        value=2 RRT* full
+        -->
+        <param name="type_planner" value="0" type="int"/>
+
+        <!-- If BOX == 1 BallBox Theorem Applied when Nearest Vertex is choosed -->
+        <param name="BOX" value="0" type="int"/>
+
+        <!-- RADIUS is the value of the radius used to select the nearest vertex, if radius is ZERO than its value is choosed by RRT* -->
+        <param name="RADIUS" value="4" type="double"/>
+        <param name="RHO" value=".15" type="double"/>
+        <param name="DT"  value="0.1" type="double"/>
+        <!-- <param name="L_AXIS" value="0.456" type="double"/> -->
+        <param name="READ_AGENTS" value="0" type="int"/>
+        <param name="L_AXIS" value="0.456" type="double"/>
+        <!-- <param name="L_AXIS" value="0.92" type="double"/> -->
+
+
+
+
+        <!-- Params Branching -->
+        <param name="THRS_BRANCHBOUND" value="0.1" type="double"/>
+        <param name="BRANCHBOUND" value="0" type="int"/>
+        <param name="BRANCHBOUND_RATIO" value="100" type="int"/>
+
+
+        <!-- Params related to SAMPLING -->
+        <!-- if TYPE_SAMPLING == 2 support set as gaussians over a spline fitting the Theta* waypoints -->
+        <!-- If TYPE_SAMPLING == 1 support set as Gaussian -->
+        <!-- if TYPE_SAMPLING == 0 support set as uniform over a strips -->
+        <!-- if TYPE_SAMPLING == 3 support for Theta*-RRT -->
+        <!-- if TYPE_SAMPLING == 4 support set as the entire state space-->
+        <!-- if TYPE_SAMPLING == 5 Path Biasing along the current available trajectory-->
+        <param name="TYPE_SAMPLING" value="3" type="int"/>
+
+
+        <!-- Goal Biasing valid only with TYPE_SAMPLING == 4 -->
+        <param name="GOAL_BIASING" value="1" type="int"/>
+
+        <param name="GOAL_BIASING_ORIENTATION_RANGE" value="0" type="double"/>
+
+        <param name="GOAL_BIASING_THS" value="0.15" type="double"/>
+
+        <!-- Trajectory biasing valid only with TYPE_SAMPLING == 5 -->
+        <param name="BIAS_PROB" value="0.99" type="double"/>
+
+        <param name="DISPERSION" value="0.5" type="double"/>
+
+        <param name="SRCPARENT" value="0" type="int"/>
+
+        <!--   OR_RANGE is the value of the orientation range
+        OR_RANGE = M_PI = 3.14
+        OR_RANGE = M_PI/2 = 1.57
+        -->
+        <param name="OR_RANGE" value="0.80" type="double"/>
+
+        <param name="AVERAGING" value="2" type="int"/>
+
+        <!-- Size of the strip if no Gaussian support is used -->
+        <param name="WIDTH_STRIP"  value="4" type="double" />
+
+
+        <!-- Choose if to add cost from global cost map -->
+        <param name="ADD_COST_FROM_COSTMAP" value="true" type="bool"/>
+
+        <!-- Choose if to add cost associated to path length and changes of heading -->
+        <param name="ADD_COST_PATHLENGTH" value="0" type="int"/>
+
+        <!-- Choose if to add cost closeness to thetastar path -->
+        <param name="ADD_COST_THETASTAR" value="0" type="int"/>
+
+
+        <!--
+        Choose the model
+        if MODEL_COST==0, Repulsive Force
+        if MODEL_COST==1, Attractive Force
+        if MODEL_COST==2 Attractive Force + Orientation
+
+        -->
+        <param name="MODEL_COST" value="2" type="int"/>
+
+        <!--   Number of points of the trajectory between the evaluation of the Theta* cost
+        -->
+        <param name="n_dis_traj" value="25" type="int"/>
+
+        <!-- Params to set how to select the nearest vertex -->
+        <!-- find the nearest vertex according to a cost -->
+        <param name="LEARNED"  value="0" type="int" />
+
+        <!-- find the nearest vertex according to the Kd Tree Euclidean Distance -->
+        <param name="FINDNEAREST"  value="0" type="int" />
+
+        <!-- Compute the Cost using the Basis Function Model if NOTLEARNED==0 -->
+        <param name="NOTLEARNED"  value="1" type="int" />
+
+
+        <!-- Params to include cost of the Theta* path distance -->
+        <!-- In cost function associated to the Theta* path -->
+        <param name="Kd" value="0.5" type="double" />
+        <param name="Kangle" value="0.5" type="double" />
+        <!-- In the cost function associated to the path length and heading changes -->
+        <param name="Kdist" value="0.5" type="double" />
+        <param name="Kor" value="0.5" type="double" />
+
+        <param name="Kth" value="1" type="double" />
+
+        <!-- Param to tune how far the orientation has to converge to the average orientation between two theta* segments -->
+        <param name="Kround" value="1" type="double"/>
+
+        <!-- Use external Sigmas definitions -->
+        <param name="EXT_SIGMAS" value="1" type="int"/>
+
+        <param name="SigmaoverX" value="3" type="double" />
+
+        <param name="SigmaoverY" value="3" type="double" />
+
+
+
+        <!-- MOVE BASE -->
+
+        <!-- load additional move_base params -->
+        <rosparam file="$(find srl_global_planner)/config/move_base.yaml" command="load" />
+
+        <!-- load global navigation specific parameters -->
+        <rosparam file="$(find srl_global_planner)/config/common_params.yaml" command="load" ns="global_costmap" />
+
+
+        <rosparam file="$(find srl_global_planner)/config/global_costmap_params.yaml" command="load" ns="global_costmap" />
+
+
+        <!-- use the DWA as local planner for the spencer robot -->
+
+         <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/> 
+
+        <param name="base_global_planner" value="srl_global_planner/Srl_global_plannerROS"/>
+
+
+
+        <!-- Move Base params -->
+        <param name="controller_frequency" value="10" />
+        <param name="controller_patience" value="100.0" />
+        <param name="planner_frequency" value="0.05" />
+        <param name="recovery_behavior_enabled" value="false"/>
+
+
+
+    </node>
+
+</launch>

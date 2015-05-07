@@ -1,0 +1,10 @@
+<library path="lib/libsrl_global_planner">
+
+
+  <class name="srl_global_planner/Srl_global_plannerROS" type="srl_global_planner::Srl_global_planner" base_class_type="nav_core::BaseGlobalPlanner">
+    <description>
+      Global Planner consisting of Theta* (or A*) and RRT
+    </description>
+  </class>
+
+</library>

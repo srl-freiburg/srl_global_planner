@@ -1,0 +1,2 @@
+# control loop will run at 5 hz
+controller_frequency: 10.0

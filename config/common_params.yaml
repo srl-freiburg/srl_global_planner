@@ -1,0 +1,21 @@
+# obstacle_range: 50.0
+# raytrace_range: 50.0
+
+inflation_radius: 0.05
+
+# obstacle_range: 2.5
+# raytrace_range: 3.0
+
+max_obstacle_height: 2.0
+min_obstacle_height: -1.0
+
+use_dijkstra: false
+# visualize_potential: false
+
+# name of the frame at base-link of the spencer robot
+robot_base_frame: base_footprint
+# specifications for the footprint of the robot as polygon (in meters)
+#footprint: [[0.39, 0.27], [0.39, -0.27], [0.24, -0.41], [-0.24, -0.41], [-0.39, -0.27], [-0.39, 0.27], [-0.24, 0.41], [0.24, 0.41]]
+
+#footprint: [[0.756, 0.455], [0.756, -0.456], [-0.791, -0.455], [-0.791, 0.455] ] # original
+footprint: [[0.796, 0.495], [0.796, -0.495], [-0.831, -0.495], [-0.831, 0.495] ] # larger footprint
