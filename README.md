@@ -22,9 +22,9 @@ Clone the package into you catkin workspace
 ## Usage
 - roslaunch srl_global_planner move_base_global_srl.launch will launch the global planner node. You can launch the planner with different configurations, by varying some parameters:
   - `TYPE_PLANNER`, set to:
-    - 0, use RRT
-    - 1, use RRT* only partial rewiring
-    - 2, use RRT*
+    - 0, use `RRT`
+    - 1, use `RRT*` only partial rewiring
+    - 2, use `RRT*`
   - `NUMBER_UPDATE_TRAJ`, set to:
     - Choose after how many cost improvements the planner could stop, currently set at 2. Minimum value is 1. Higher the value, higher the computaion time required to generate a trajectory
   - `BOX` :
@@ -36,7 +36,7 @@ Clone the package into you catkin workspace
   - `DT` :
     - integration time step of the POSQ steer function, maximum value 0.5s
   - `TYPE_SAMPLING` :
-    - if `TYPE_SAMPLING` == 0 support set as uniform over a strips following a discrete path generate by a `Theta**` algorithm
+    - if `TYPE_SAMPLING` == 0 support set as uniform over a strips following a discrete path generate by a `Theta*` algorithm
     - If `TYPE_SAMPLING` == 1 support set as Gaussian Mixture over the `Theta*` path
     - if `TYPE_SAMPLING` == 2 support set as gaussians over a spline fitting the `Theta*` waypoints
     - if `TYPE_SAMPLING` == 3 support for `Theta*-RRT`, if set need to specify the range where to set orientations `OR_RANGE` and the width of the strip along the `Theta*` path `WIDTH_STRIP`
@@ -63,4 +63,4 @@ Clone the package into you catkin workspace
 
 ## TODOs:
 * Improve documentation
-* Include RRTx
+* Include `RRTx`
