@@ -55,3 +55,7 @@ Clone the package into you catkin workspace
   - `TIMECOUNTER`, set to 1 if you want to specify the maximum amount of seconds your planner should work.
   - `MAXTIME`, max number of seconds allowed to find a path
   - `max_iterations`, if `TIMECOUNTER` is 0, this is the maximum number of iterations the planner will execute to find a path,
+
+
+## Developers
+* Luigi Palmieri (https://github.com/palmieri)
