@@ -11,10 +11,10 @@ The SRL_GLOBAL_PLANNER ROS package provides an implementation of the sampling ba
 ## Installation
 
 Clone the package into you catkin workspace
-- cd [workspace]/src
-- git clone https://github.com/srl-freiburg/srl_global_planner.git
-- cd ../
-- catkin_make or catkin build
+- `cd [workspace]/src`
+- `git clone https://github.com/srl-freiburg/srl_global_planner.git`
+- `cd ../`
+- `catkin_make` or `catkin build`
 
 
 
