@@ -30,16 +30,16 @@ Clone the package into you catkin workspace
   - `BOX` :
     - if it is set to 1, the nearest vertex is selected from a weighted box according to the Ball-Box Theorem.
   - `RADIUS` :
-    - the size of the radius where the near neighbor set is generated, in case you use RRT* select -1 so to have the RRT* shrinking ball.
+    - the size of the radius where the near neighbor set is generated, in case you use RRT** select -1 so to have the RRT** shrinking ball.
   - `RHO` :
     - end condition for the POSQ steer function, should be set to a value of few cm.
   - `DT` :
     - integration time step of the POSQ steer function, maximum value 0.5s
   - `TYPE_SAMPLING` :
-    - if `TYPE_SAMPLING` == 0 support set as uniform over a strips following a discrete path generate by a Theta* algorithm
-    - If `TYPE_SAMPLING` == 1 support set as Gaussian Mixture over the Theta* path
-    - if `TYPE_SAMPLING` == 2 support set as gaussians over a spline fitting the Theta* waypoints
-    - if `TYPE_SAMPLING` == 3 support for Theta*-RRT, if set need to specify the range where to set orientations `OR_RANGE` and the width of the strip along the Theta* path `WIDTH_STRIP`
+    - if `TYPE_SAMPLING` == 0 support set as uniform over a strips following a discrete path generate by a Theta** algorithm
+    - If `TYPE_SAMPLING` == 1 support set as Gaussian Mixture over the Theta** path
+    - if `TYPE_SAMPLING` == 2 support set as gaussians over a spline fitting the Theta** waypoints
+    - if `TYPE_SAMPLING` == 3 support for Theta**-RRT, if set need to specify the range where to set orientations `OR_RANGE` and the width of the strip along the Theta** path `WIDTH_STRIP`
     - if `TYPE_SAMPLING` == 4 support set as the entire state space, the dimension of the state space are read from the grid generate by the move_base framework
     - if `TYPE_SAMPLING` == 5 Path Biasing along the current available trajectory. If used need to set also the biasing probability BIAS_PROB and the DISPERSION
   - `GOAL_BIASING`
