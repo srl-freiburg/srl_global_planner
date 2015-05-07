@@ -41,7 +41,7 @@ Clone the package into you catkin workspace
     - if `TYPE_SAMPLING` == 2 support set as gaussians over a spline fitting the `Theta*` waypoints
     - if `TYPE_SAMPLING` == 3 support for `Theta*-RRT`, if set need to specify the range where to set orientations `OR_RANGE` and the width of the strip along the `Theta*` path `WIDTH_STRIP`
     - if `TYPE_SAMPLING` == 4 support set as the entire state space, the dimension of the state space are read from the grid generate by the move_base framework
-    - if `TYPE_SAMPLING` == 5 Path Biasing along the current available trajectory. If used need to set also the biasing probability BIAS_PROB and the DISPERSION
+    - if `TYPE_SAMPLING` == 5 Path Biasing along the current available trajectory. If used need to set also the biasing probability `BIAS_PROB` and the `DISPERSION`
   - `GOAL_BIASING`
     - if set to 1 activate goal biasing.
   - `GOAL_BIASING_THS`
@@ -49,7 +49,7 @@ Clone the package into you catkin workspace
   - `ADD_COST_FROM_COSTMAP`, set to true if you want to add cost from global cost map
   - `ADD_COST_PATHLENGTH`, set to true if you want to add the cost associated to path length and changes of heading
   - `ADD_COST_THETASTAR`, set to true if you want to add cost resembling closeness to thetastar path
-  - Params related to the distance metric, only one of them shoul be set to 1. `LEARNED` and 'NOTLEARNED' select the best vertex from the spherical neighborhood with radius equal to the parameter `RADIUS`:
+  - Params related to the distance metric, only one of them shoul be set to 1. `LEARNED` and `NOTLEARNED` select the best vertex from the spherical neighborhood with radius equal to the parameter `RADIUS`:
     - `LEARNED`, set to 1, if you want to find the nearest vertex according to the learned cost
     - `FINDNEAREST`, set to 1 if you want to find the nearest vertex according to the Kd Tree Euclidean Distance
     - `NOTLEARNED`, set to 1 if you want to find the nearest vertex according to the cost computed over extensions of POSQ path
