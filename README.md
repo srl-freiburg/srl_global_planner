@@ -65,9 +65,11 @@ Clone the package into you catkin workspace
   - `max_iterations`, if `TIMECOUNTER` is 0, this is the maximum number of iterations the planner will execute to find a path,
 
 ## Developers
+Any contribution to the software is welcome. Contact the current developers for any info: 
 * Luigi Palmieri (https://github.com/palmieri, palmieri(at)informatik.uni-freiburg.de)
 
 ## TODOs:
 * Rewrite the code to be conform to the ROS Cpp style guide (http://wiki.ros.org/CppStyleGuide)
+* Use dynamic reconfiguration of the parameters, see http://wiki.ros.org/dynamic_reconfigure
 * Improve documentation
 * Include `RRTx`
