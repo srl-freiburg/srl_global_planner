@@ -1,6 +1,13 @@
 # srl_global_planner
 The `srl_global_planner` `ROS` package provides an implementation of the sampling based motion planners (`RRT`, `RRT*`, `Theta*-RRT`) as global planner plugin for `move_base`, a `ROS` framework. Please refer to http://wiki.ros.org/move_base, for a detailed description of the `move_base` framework.
+All the algorithms exploit the POSQ steer function, but other steer functions are available (single and double integrator, Dubins curve). 
+For additional info regarding the POSQ steer function and the learned distance metric used by `srl_global_planner` refer to the following papers:
+* *Distance Metric Learning for RRT-Based Motion Planning with Constant-Time Inference*, IEEE International Conference on Robotics and Automation (ICRA'15), Seattle, USA, 2015.
+* *A Novel RRT Extend Function for Efficient and Smooth Mobile Robot Motion Planning*, IEEE/RSJ Int. Conference on Intelligent Robots and Systems (IROS'14), Chicago, USA, 2014.
+
+
 ![alt tag](http://www2.informatik.uni-freiburg.de/~palmieri/pages/images/FSR15.png)
+
 
 ## Requirements
 * ROS (including visualization rools -> rviz), tested on Indigo and Hydro
@@ -56,7 +63,6 @@ Clone the package into you catkin workspace
   - `TIMECOUNTER`, set to 1 if you want to specify the maximum amount of seconds your planner should work.
   - `MAXTIME`, max number of seconds allowed to find a path
   - `max_iterations`, if `TIMECOUNTER` is 0, this is the maximum number of iterations the planner will execute to find a path,
-
 
 ## Developers
 * Luigi Palmieri (https://github.com/palmieri, palmieri(at)informatik.uni-freiburg.de)
