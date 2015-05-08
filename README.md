@@ -68,5 +68,6 @@ Clone the package into you catkin workspace
 * Luigi Palmieri (https://github.com/palmieri, palmieri(at)informatik.uni-freiburg.de)
 
 ## TODOs:
+* Rewrite the code to be conform to the ROS Cpp style guide (http://wiki.ros.org/CppStyleGuide)
 * Improve documentation
 * Include `RRTx`
