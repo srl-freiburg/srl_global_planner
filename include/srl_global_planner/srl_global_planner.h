@@ -18,6 +18,11 @@
 #include <ros/ros.h>
 #include <ros/console.h>
 
+// messages and services
+#include <spencer_tracking_msgs/TrackedPersons.h>
+#include <spencer_control_msgs/CollisionStatus.h>
+#include <spencer_nav_msgs/SetDrivingDirection.h>
+#include <spencer_nav_msgs/StopDriving.h>
 
 #include <tf/transform_listener.h>
 
@@ -43,6 +48,7 @@
 
 #include <srl_global_planner/world_model.h>
 #include <srl_global_planner/costmap_model.h>
+
 
 #include <costmap_2d/costmap_2d_ros.h>
 #include <costmap_2d/costmap_2d.h>
@@ -85,6 +91,13 @@
 #include <smp/planner_utils/trajectory.hpp>
 
 #include <smp/utils/branch_and_bound_euclidean.hpp>
+
+
+
+
+#include <srl_global_planner/costmap_layers_dyn_rec_handler.h>
+
+
 
 #define HUMANMAX 20
 
@@ -227,6 +240,7 @@ typedef struct HumanPoint {
 
 
 
+using namespace spencer_control_msgs;
 
 
 
@@ -245,6 +259,8 @@ private:
 
     ros::NodeHandle nh_;
     // Publishers
+    ros::Publisher pub_planner_blocked_;
+    ros::Publisher pub_plan_;    // WARNING: TO PUBLISH A PATH
     ros::Publisher pub_path_;    // WARNING: TO PUBLISH A PATH
     ros::Publisher pub_goal_;
     ros::Publisher pub_tree_;
@@ -261,6 +277,10 @@ private:
     ros::Subscriber sub_all_agents_;   // to read the agents' poses AND   to read the current robot pose
     ros::Subscriber sub_goal_;
     ros::Subscriber sub_daryl_odom_;
+    ros::Subscriber frontLaserCollisionStatus_listener_;
+    ros::Subscriber rearLaserCollisionStatus_listener_;
+
+    ros::ServiceServer srv_drivingdir;
 
 
 
@@ -275,7 +295,7 @@ public:
     * @param costmap_ros, cost_map ros wrapper
     */
     Srl_global_planner() : costmap_ros_(NULL), initialized_(false),  world_model_(NULL) {
-
+      length_path_optimize_ = -1.0;
     }
 
     /**
@@ -287,6 +307,7 @@ public:
     {
 
         initialize(name, costmap_ros);
+        length_path_optimize_ = -1.0;
     }
 
     /**
@@ -306,6 +327,33 @@ public:
     bool makePlan(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal, std::vector<geometry_msgs::PoseStamped>& plan );
 
     /**
+    * @brief generatePlan, follows the virtual method of the base class, it tries several time to find a plan by modifying the costmap layers
+    * @param start, Start pose
+    * @param goal, goal pose
+    * @param plan, generated path
+    * @return bool, true
+    */
+    bool checkLayersAndPlan(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal, std::vector<geometry_msgs::PoseStamped>& plan );
+
+    /**
+    * @brief generatePlan, follows the virtual method of the base class
+    * @param start, Start pose
+    * @param goal, goal pose
+    * @param plan, generated path
+    * @return bool, true
+    */
+    bool generatePlan(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal, std::vector<geometry_msgs::PoseStamped>& plan );
+
+    /**
+    * @brief generatePlanOptimizeLocally, generates a plan and it optimize it locally
+    * @param start, Start pose
+    * @param goal, goal pose
+    * @param plan, generated path
+    * @return bool, true
+    */
+    bool generatePlanOptimizeLocally(const geometry_msgs::PoseStamped& start, const geometry_msgs::PoseStamped& goal, std::vector<geometry_msgs::PoseStamped>& plan );
+
+    /**
     * @brief callbackSetGoal, Set goal via the Rviz Topic
     * @return void
     */
@@ -317,6 +365,11 @@ public:
     */
     void callbackObstacles(const nav_msgs::OccupancyGrid::ConstPtr& msg);
 
+    /**
+    * @brief callbackAllTracks, Read the agents
+    * @return void
+    */
+    void callbackAllTracks(const spencer_tracking_msgs::TrackedPersons::ConstPtr& msg);
 
     /**
     * @brief callbackSetRobotPose, Read the robot odom not currently used
@@ -325,17 +378,47 @@ public:
     void callbackSetRobotPose(const nav_msgs::Odometry::ConstPtr& msg);
 
     /**
+    * @brief  Set Driving Direction
+    * @return True
+    */
+    bool SetDrivingDirection(spencer_nav_msgs::SetDrivingDirection::Request &req,spencer_nav_msgs::SetDrivingDirection::Response &res);
+
+    /**
+    * @brief  Check collision Status from Front Laser
+    * @return void
+    */
+    void checkFrontLaserCollisionStatus(const CollisionStatus::ConstPtr& msg);
+
+    /**
+    * @brief  Check collision Status from Front Laser
+    * @return void
+    */
+    void checkRearLaserCollisionStatus(const CollisionStatus::ConstPtr& msg);
+
+
+    /**
     * @brief publishPath, Publish path
     * @return void
     */
     void publishPath(Trajectory *t);
 
+
+    /**
+    * @brief publishPlan, Publish final plan
+    * @return void
+    */
+    void publishPlan(std::vector<geometry_msgs::PoseStamped>& plan);
     /**
     * @brief publishGoal, Publish Goal
     * @return void
     */
     void publishGoal();
 
+    /**
+    * @brief publishBlockedPlanner
+    * @return void
+    */
+    void publishBlockedPlanner(bool status);
     /**
     * @brief publishSample, Publish sample of RRT
     * @param x, x coordinate of the sample
@@ -441,6 +524,9 @@ public:
 
     int Nit_; ///<  @brief  Number of max iterations
 
+    bool collision_error_; ///< @brief Check if in collision error
+
+    bool collision_warning_; ///< @brief Check if in collision warning
 
     Trajectory *trajectory_; ///<  @brief Keep the path locally
 
@@ -530,6 +616,8 @@ public:
     geometry_msgs::Pose start_pose_; ///<  @brief Start pose
 
     geometry_msgs::Pose goal_pose_; ///<  @brief Goal pose
+
+    geometry_msgs::Pose previous_goal_pose_; ///<  @brief Goal pose
 
     //
     int PARALLEL; ///<  @brief Parallelize collision checker (only rectangular colllision checker)
@@ -662,8 +750,47 @@ public:
 
     int cnt_no_plan_; ///<  @brief counter of no planning sol
 
+    double distToTheGoal_; ///<  @brief Current distance to the goal
 
+    double thrs_initial_part_path_;
 
+    int cnt_run_grid_planner_;
+
+    int dir_planning_; ///<  @brief if set to -1 the planner flips the orientation of the differential drive robot, to generate backward motions
+
+    double dist_wall_; ///<  @brief parameter to set externally via rosparam, it defines the circle where the robot checks how many humans are very close to the robot
+
+    int cnt_agents_in_wall_; ///<  @brief Number of agents very close to the robot
+
+    double last_path_length_ ;
+
+    int initialize_previous_goal_;
+
+    double gain_path_length_;
+
+    int n_agents_in_wall_planning_;
+
+    bool return_discrete_path_;
+
+    costmapLayersDynRecHandler *costmap_layers_handler_;
+
+    double initial_social_range_;
+
+    double reduced_social_range_;
+
+    bool CHECK_LAYERS_ON_;
+
+    bool obstacle_layer_off_;
+
+    bool return_only_discrete_path_;
+
+    double global_costmap_height_;
+
+    double global_costmap_width_;
+
+    double length_path_optimize_ ;
+
+    double planner_frequency_;
 
 };
 

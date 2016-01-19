@@ -34,7 +34,7 @@ int smp::extender_pos<typeparams,NUM_DIMENSIONS>
 
 template< class typeparams, int NUM_DIMENSIONS >
 int smp::extender_pos<typeparams,NUM_DIMENSIONS>
-::ex_update_insert_edge (edge_t *edge_in) { 
+::ex_update_insert_edge (edge_t *edge_in) {
 
     return 1;
 }
@@ -152,9 +152,9 @@ double smp::extender_pos<typeparams,NUM_DIMENSIONS>
 
 template< class typeparams, int NUM_DIMENSIONS >
 double* smp::extender_pos<typeparams,NUM_DIMENSIONS>
-::posctrlstep (double x_c, double y_c, double t_c, 
+::posctrlstep (double x_c, double y_c, double t_c,
                double x_end, double y_end, double t_end, double ct, double b, int dir) {
-    
+
 
     /** This function will generate a vector of double as output:
 
@@ -171,7 +171,7 @@ double* smp::extender_pos<typeparams,NUM_DIMENSIONS>
 
     double Krho,Kalpha,Kbeta,Kphi,Vmax,RhoThreshold1,RhoThreshold2,RhoEndCondition,PhiEndCondition;
     // [1 3 -1 -1]
-    Krho    = 1;
+    Krho    = 1.2;
     Kalpha  = 3;
     Kbeta   = -1;
     Kphi    = -1;
@@ -271,7 +271,7 @@ double* smp::extender_pos<typeparams,NUM_DIMENSIONS>
 
 
 #if WP>0
-    if (rho<this->rho_endcondition ){
+    if (rho<this->rho_endcondition && abs(phi)<this->phi_endcondition ){
 #else
     if (rho<RhoEndCondition && abs(phi)<PhiEndCondition){
 
@@ -480,7 +480,7 @@ smp::extender_pos<typeparams,NUM_DIMENSIONS>
      this->dt_=0.01;
      this->rho_endcondition=0.15;
      this->L_axis=0.5;
-
+     this->phi_endcondition = 20*M_PI/180;
 
 
 }
@@ -536,9 +536,7 @@ int smp::extender_pos<typeparams, NUM_DIMENSIONS>
 
     }
 
-    
+
 
 
 }
-
-

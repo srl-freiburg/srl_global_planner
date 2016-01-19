@@ -1,13 +1,18 @@
 <launch>
+<rosparam command="load" file="$(find social_compliance_layer)/cfg/simple_behaviors.yaml" />
+
+
+<include file="$(find spencer_tracking_utils)/launch/filter_tracks_by_distance.launch" />
 
 
 <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen" >
+        <remap from="/cmd_vel" to="/spencer/control/desired_velocity"/>
 
 
         <param name="planner_frame" value="occ_map" type="string"/>
         <param name="local_planner_frame" value="odom" type="string"/>
         <param name="map_topic" value="/occ_map" type="string"/>
-
+        <param name="human_sub_topic" value="/spencer/perception/tracked_persons_confirmed_by_HOG_or_upper_body_or_moving" type="string"/>
 
         <!-- planner related parameters -->
         <!-- WARNING: parameters related to the scene1.xml file -->
@@ -156,9 +161,9 @@
         <!-- if TYPE_SAMPLING == 2 support set as gaussians over a spline fitting the Theta* waypoints -->
         <!-- If TYPE_SAMPLING == 1 support set as Gaussian -->
         <!-- if TYPE_SAMPLING == 0 support set as uniform over a strips -->
-        <!-- if TYPE_SAMPLING == 3 support for Theta*-RRT -->
+        <!-- if TYPE_SAMPLING == 3 support set as uniform over a strips  with round joints Theta* -->
         <!-- if TYPE_SAMPLING == 4 support set as the entire state space-->
-        <!-- if TYPE_SAMPLING == 5 Path Biasing along the current available trajectory-->
+        <!-- if TYPE_SAMPLING == 5 Path Biasing-->
         <param name="TYPE_SAMPLING" value="3" type="int"/>
 
 
@@ -251,18 +256,27 @@
 
         <!-- load global navigation specific parameters -->
         <rosparam file="$(find srl_global_planner)/config/common_params.yaml" command="load" ns="global_costmap" />
+        <!-- <rosparam file="$(find srl_global_planner)/config/common_params.yaml" command="load" ns="local_costmap" /> -->
 
+        <!-- <rosparam file="$(find srl_global_planner)/config/local_costmap_params.yaml" command="load" ns="local_costmap" /> -->
+        <rosparam file="$(find spencer_navigation)/move_base_config/local_costmap_params.yaml" command="load" ns="local_costmap" />
 
         <rosparam file="$(find srl_global_planner)/config/global_costmap_params.yaml" command="load" ns="global_costmap" />
 
+	<rosparam file="$(find spencer_navigation)/move_base_config/waypoint_follower_planner_params.yaml" command="load" ns="waypoint_follower" />
 
         <!-- use the DWA as local planner for the spencer robot -->
-
-         <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/> 
-
+        <!-- <param name="base_local_planner" value="waypoint_follower/WaypointFollowerPlugin"/> -->
+        <!-- <param name="base_local_planner" value="dwa_local_planner/DWAPlannerROS"/> -->
+        <param name="base_local_planner" value="waypoint_follower/WaypointFollowerPlugin"/>
+        <!-- <param name="base_local_planner" value="srl_local_planner/srl_local_plannerPlugin" /> -->
         <param name="base_global_planner" value="srl_global_planner/Srl_global_plannerROS"/>
 
 
+        <!--  <param name="base_local_planner" value="srl_local_planner/srl_local_plannerPlugin"/> -->
+
+
+        <!-- <rosparam file="$(find pedsim_2dnav)/config/dwa_local_planner_params.yaml" command="load" ns="DWAPlannerROS" /> -->
 
         <!-- Move Base params -->
         <param name="controller_frequency" value="10" />

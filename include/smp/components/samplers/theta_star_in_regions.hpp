@@ -1903,7 +1903,7 @@ template< class typeparams, int NUM_DIMENSIONS >
 int smp::theta_star_in_regions<typeparams,NUM_DIMENSIONS>
 ::update_trajectory (trajectory_t *trajectory_in){
 
-   ROS_INFO("Size of the traj %d ",(int)trajectory_in->list_states.size());
+  //  ROS_INFO("Size of the traj %d ",(int)trajectory_in->list_states.size());
 
    path_support.clear_delete();
 

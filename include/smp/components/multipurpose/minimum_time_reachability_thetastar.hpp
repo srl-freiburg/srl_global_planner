@@ -62,24 +62,25 @@ smp::minimum_time_reachability<typeparams,NUM_DIMENSIONS>
 
 template< class typeparams, int NUM_DIMENSIONS >
 int smp::minimum_time_reachability<typeparams,NUM_DIMENSIONS>
-::initWorldModel(base_local_planner::CostmapModel* world_model,std::vector<geometry_msgs::Point> footprint_spec, double inscribed_radius, double circumscribed_radius, costmap_2d::Costmap2DROS* costmap_ros, std::string planner_frame){
+::initWorldModel(base_local_planner::CostmapModel* world_model,std::vector<geometry_msgs::Point> footprint_spec, double inscribed_radius, double circumscribed_radius, costmap_2d::Costmap2DROS* costmap_ros, std::string planner_frame, tf::TransformListener *listener){
 
   this->world_model_ = world_model;
   this->footprint_spec_ = footprint_spec;
-  ROS_INFO("CollisionChecker Size of the footprint_spec %d", (int )footprint_spec_.size());
+  ROS_DEBUG("CollisionChecker Size of the footprint_spec %d", (int )footprint_spec_.size());
 
   this->circumscribed_radius_= circumscribed_radius;
   this->inscribed_radius_ = inscribed_radius;
   this->costmap_ros_ = costmap_ros; ///< @brief The ROS wrapper for the costmap the controller will use
 
-  CostEvaluatorlistener = new tf::TransformListener();
+  CostEvaluatorlistener = listener;
 
   global_frame_ = costmap_ros_->getGlobalFrameID();
 
+  rob_foot_print_ = costmap_ros_->getRobotFootprint();
 
   try{
 
-      ROS_INFO("Getting Transform from %s to %s", planner_frame.c_str(), global_frame_.c_str() );
+      ROS_DEBUG("Getting Transform from %s to %s", planner_frame.c_str(), global_frame_.c_str() );
 
       CostEvaluatorlistener->waitForTransform( global_frame_, planner_frame, ros::Time(0), ros::Duration(0.20));
       CostEvaluatorlistener->lookupTransform(global_frame_, planner_frame, ros::Time(0), transform_);
@@ -117,16 +118,28 @@ int smp::minimum_time_reachability<typeparams,NUM_DIMENSIONS>
     double y_bot = result.getOrigin().y();
     double orient_bot = tf::getYaw( result.getRotation());
 
-    // ROS_INFO("From (%f,%f,%f) to (%f,%f,%f) ", x_i, y_i, theta_i, x_bot, y_bot, orient_bot);
+    // ROS_DEBUG("From (%f,%f,%f) to (%f,%f,%f) ", x_i, y_i, theta_i, x_bot, y_bot, orient_bot);
 
     std::vector<geometry_msgs::Point> footprint_spec;
 
     footprint_spec.clear();
 
     // Given a pose, build the oriented footprint of the robot.
-    costmap_ros_->getOrientedFootprint(x_bot , y_bot , orient_bot, footprint_spec);
+    // costmap_ros_->getOrientedFootprint(x_bot , y_bot , orient_bot, footprint_spec);
 
-    // ROS_INFO("CollisionCheckerState Size of the footprint_spec %d", (int )footprint_spec.size());
+
+        // build the oriented footprint at the robot's current location
+        double cos_th = cos(orient_bot);
+        double sin_th = sin(orient_bot);
+        for (unsigned int i = 0; i < rob_foot_print_.size(); ++i){
+            geometry_msgs::Point new_pt;
+            new_pt.x = x_bot + (rob_foot_print_[i].x * cos_th - rob_foot_print_[i].y * sin_th);
+            new_pt.y = y_bot + (rob_foot_print_[i].x * sin_th + rob_foot_print_[i].y * cos_th);
+            footprint_spec.push_back(new_pt);
+
+        }
+
+    // ROS_DEBUG("CollisionCheckerState Size of the footprint_spec %d", (int )footprint_spec.size());
     geometry_msgs::Point robot_point;
 
     robot_point.x = x_bot;
@@ -209,7 +222,7 @@ int smp::minimum_time_reachability<typeparams,NUM_DIMENSIONS>
 
     if (min_cost_vertex == NULL) {
       min_cost_vertex = vertex_in;
-      cout << "COST -- : " << vertex_in->data.total_cost << endl;
+      ROS_INFO_STREAM("RRT* Trajectory Cost : " << vertex_in->data.total_cost << endl);
       /// saving the cost
       cost= vertex_in->data.total_cost;
       update_trajectory = true;
@@ -219,7 +232,8 @@ int smp::minimum_time_reachability<typeparams,NUM_DIMENSIONS>
 
 
     if ( (vertex_in->data.total_cost < min_cost_vertex->data.total_cost) ) {
-      cout << "COST -- : " << vertex_in->data.total_cost << endl;
+      
+      ROS_INFO_STREAM("RRT* Trajectory Cost : " << vertex_in->data.total_cost << endl);
       /// saving the cost
       cost=vertex_in->data.total_cost;
       min_cost_vertex = vertex_in;

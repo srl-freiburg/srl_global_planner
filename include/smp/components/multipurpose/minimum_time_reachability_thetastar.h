@@ -191,7 +191,7 @@ namespace smp {
         * @returns Returns 1 for success, a non-positive value to indicate error.
         *
         */
-        int initWorldModel(base_local_planner::CostmapModel* world_model,std::vector<geometry_msgs::Point> footprint_spec, double inscribed_radius, double circumscribed_radius, costmap_2d::Costmap2DROS* costmap_ros, std::string planner_frame);
+        int initWorldModel(base_local_planner::CostmapModel* world_model,std::vector<geometry_msgs::Point> footprint_spec, double inscribed_radius, double circumscribed_radius, costmap_2d::Costmap2DROS* costmap_ros, std::string planner_frame, tf::TransformListener *listener);
 
 
         /**
@@ -266,6 +266,8 @@ namespace smp {
         tf::TransformListener *CostEvaluatorlistener; ///< @brief Trasform Listener used to apply a trasform between Odom and global cost map frame
 
         tf::StampedTransform transform_;  ///< @brief Trasform between Global Frame and Odom
+
+        std::vector<geometry_msgs::Point> rob_foot_print_;
 
 
 

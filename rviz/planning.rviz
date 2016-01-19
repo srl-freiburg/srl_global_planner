@@ -1,0 +1,771 @@
+Panels:
+  - Class: rviz/Displays
+    Help Height: 85
+    Name: Displays
+    Property Tree Widget:
+      Expanded:
+        - /global_costmap1/Status1
+      Splitter Ratio: 0.699386
+    Tree Height: 836
+  - Class: rviz/Selection
+    Name: Selection
+  - Class: rviz/Tool Properties
+    Expanded:
+      - /2D Pose Estimate1
+      - /2D Nav Goal1
+      - /Publish Point1
+    Name: Tool Properties
+    Splitter Ratio: 0.588679
+  - Class: rviz/Views
+    Expanded:
+      - /Current View1
+    Name: Views
+    Splitter Ratio: 0.5
+  - Class: rviz/Time
+    Experimental: false
+    Name: Time
+    SyncMode: 0
+    SyncSource: FrontLaserScan
+Visualization Manager:
+  Class: ""
+  Displays:
+    - Alpha: 0.15
+      Cell Size: 0.2
+      Class: rviz/Grid
+      Color: 249; 249; 249
+      Enabled: false
+      Line Style:
+        Line Width: 0.03
+        Value: Lines
+      Name: Grid
+      Normal Cell Count: 0
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Plane: XY
+      Plane Cell Count: 600
+      Reference Frame: map
+      Value: false
+    - Class: rviz/Axes
+      Enabled: true
+      Length: 1
+      Name: Axes
+      Radius: 0.1
+      Reference Frame: laser_rear_link
+      Value: true
+    - Alpha: 1
+      Class: rviz/RobotModel
+      Collision Enabled: false
+      Enabled: true
+      Links:
+        All Links Enabled: true
+        Expand Joint Details: false
+        Expand Link Details: false
+        Expand Tree: false
+        Link Tree Style: Links in Alphabetic Order
+        base_footprint:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        central_camera_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        common_eye_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        head_beacon_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        head_pan_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        head_tilt_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        laser_center_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        laser_front_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        laser_rear_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        left_eye_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        rgbd_front_bottom_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_bottom_pitch_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_bottom_roll_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_bottom_x_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_bottom_y_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_bottom_yaw_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_bottom_z_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_top_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_top_pitch_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_top_roll_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_top_x_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_top_y_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_top_yaw_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_front_top_z_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_bottom_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_bottom_pitch_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_bottom_roll_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_bottom_x_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_bottom_y_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_bottom_yaw_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_bottom_z_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_top_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_top_pitch_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_top_roll_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_top_x_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_top_y_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_top_yaw_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        rgbd_rear_top_z_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        right_eye_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+        safety_rectangle_front_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        safety_rectangle_rear_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_front_base_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_front_left_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_front_right_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_pitch_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_roll_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_x_offset_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_y_offset_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_yaw_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        stereo_z_offset_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne_pitch_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne_roll_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne_x_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne_y_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne_yaw_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        velodyne_z_offset_joint_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        visual_link:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+          Value: true
+      Name: RobotModel
+      Robot Description: robot_description
+      TF Prefix: ""
+      Update Interval: 0
+      Value: true
+      Visual Enabled: true
+    - Angle Tolerance: 0.1
+      Class: rviz/Odometry
+      Color: 255; 25; 0
+      Enabled: false
+      Keep: 100
+      Length: 0.2
+      Name: Odometry
+      Position Tolerance: 0.1
+      Topic: /spencer/sensors/odom
+      Value: false
+    - Alpha: 1
+      Axes Length: 1
+      Axes Radius: 0.1
+      Class: rviz/Pose
+      Color: 255; 25; 0
+      Enabled: true
+      Head Length: 0.3
+      Head Radius: 0.1
+      Name: Pose
+      Shaft Length: 1
+      Shaft Radius: 0.05
+      Shape: Arrow
+      Topic: /move_base_simple/goal
+      Value: true
+    - Alpha: 0.8
+      Class: rviz/Map
+      Color Scheme: costmap
+      Draw Behind: false
+      Enabled: true
+      Name: global_costmap
+      Topic: /move_base_node/global_costmap/costmap
+      Value: true
+    - Alpha: 0.7
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: false
+      Enabled: false
+      Name: local_costmap
+      Topic: /move_base_node/local_costmap/costmap
+      Value: false
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /move_base_node/Srl_global_planner/rrt_planner_path_dedicated
+      Name: RRT_path
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Line Style: Lines
+      Line Width: 0.03
+      Name: Theta*_path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Topic: /move_base_node/HANPLocalPlanner/global_plan
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /spencer/control/safety_rectangles/visualization/laser_front
+      Name: Safety-front
+      Namespaces:
+        ERROR: true
+        QUICK_STOP: true
+        WARNING: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /spencer/control/safety_rectangles/visualization/laser_rear
+      Name: Safety-rear
+      Namespaces:
+        ERROR: true
+        QUICK_STOP: true
+        WARNING: true
+      Queue Size: 100
+      Value: true
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /move_base_node/Srl_global_planner/rrt_planner_samples
+      Name: RRT_samples
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+    - Class: rviz/Marker
+      Enabled: false
+      Marker Topic: /move_base_node/rrt_planner_samples
+      Name: RRTsamplesLocals
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: false
+    - Alpha: 0.7
+      Class: rviz/Map
+      Color Scheme: map
+      Draw Behind: true
+      Enabled: true
+      Name: Map
+      Topic: /map
+      Value: true
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 255; 0; 0
+      Enabled: true
+      Name: Footprint
+      Topic: /move_base_node/local_costmap/footprint
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 255; 0; 0
+      Enabled: true
+      Line Style: Billboards
+      Line Width: 0.2
+      Name: local plan
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Topic: /move_base_node/HANPLocalPlanner/local_plan
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Line Style: Billboards
+      Line Width: 0.1
+      Name: global plan
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Topic: /move_base_node/navfnPlanner/plan
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: path_cost
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: false
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 181
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.01
+      Style: Points
+      Topic: /move_base_node/HANPLocalPlanner/cost_cloud
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: false
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 255; 170; 0
+      Enabled: true
+      Line Style: Billboards
+      Line Width: 0.5
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Topic: /move_base_node/Srl_global_planner/global_path
+      Value: true
+    - Alpha: 1
+      Class: spencer_tracking_rviz_plugin/TrackedPersons
+      Color: 130; 130; 130
+      Color map offset: 0
+      Color transform: Rainbow
+      Delete after no. cycles: 100
+      Enabled: true
+      Excluded person IDs: ""
+      Font color: 141; 141; 141
+      Font color style: Constant color
+      Font scale: 2
+      History as line:
+        Line width: 0.05
+        Value: true
+      History size: 100
+      Included person IDs: ""
+      Min. history point distance: 0.4
+      Missed alpha: 0.5
+      Name: TrackedPersons
+      Occlusion alpha: 0.3
+      Render covariances:
+        Line width: 0.1
+        Value: false
+      Render detection IDs: false
+      Render history: true
+      Render person visual: true
+      Render track IDs: true
+      Render track state: false
+      Render velocities: true
+      Show DELETED tracks: false
+      Show MATCHED tracks: true
+      Show MISSED tracks: true
+      Show OCCLUDED tracks: true
+      Style:
+        Line width: 0.05
+        Scaling factor: 1
+        Value: Cylinders
+      Topic: /spencer/perception/tracked_persons_moving
+      Value: true
+      Z offset:
+        Use Z position from message: false
+        Value: 0
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 108
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.01
+      Style: Points
+      Topic: /velodyne_points
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 254
+      Min Color: 0; 0; 0
+      Min Intensity: 4
+      Name: FrontLaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.1
+      Style: Flat Squares
+      Topic: /spencer/sensors/laser_front/echo0
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/LaserScan
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 254
+      Min Color: 0; 0; 0
+      Min Intensity: 6
+      Name: RearLaserScan
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.1
+      Style: Flat Squares
+      Topic: /spencer/navigation/laser_rear/scan_filtered
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /move_base_node/predicted_human_poses
+      Name: PredictionHumans
+      Namespaces:
+        {}
+      Queue Size: 100
+      Value: true
+    - Alpha: 1
+      Class: rviz/Polygon
+      Color: 25; 255; 0
+      Enabled: true
+      Name: localFootPrint
+      Topic: /move_base_node/local_costmap/footprint
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /spencer/control/safety_rectangles/visualization/rgbd_front
+      Name: RGB-D Front
+      Namespaces:
+        ERROR: true
+        WARNING: true
+      Queue Size: 10
+      Value: true
+    - Class: rviz/MarkerArray
+      Enabled: true
+      Marker Topic: /spencer/control/safety_rectangles/visualization/rgbd_rear
+      Name: RGB-D Rear
+      Namespaces:
+        ERROR: true
+        WARNING: true
+      Queue Size: 10
+      Value: true
+    - Alpha: 1
+      Buffer Length: 1
+      Class: rviz/Path
+      Color: 25; 255; 0
+      Enabled: true
+      Line Style: Billboards
+      Line Width: 1
+      Name: Path
+      Offset:
+        X: 0
+        Y: 0
+        Z: 0
+      Topic: /move_base_node/Srl_global_planner/global_path
+      Value: true
+    - Angle Tolerance: 0.1
+      Class: rviz/Odometry
+      Color: 255; 25; 0
+      Enabled: false
+      Keep: 100
+      Length: 1
+      Name: Odometry
+      Position Tolerance: 0.1
+      Topic: /ndt_mcl_pose
+      Value: false
+    - Alpha: 1
+      Autocompute Intensity Bounds: true
+      Autocompute Value Bounds:
+        Max Value: 10
+        Min Value: -10
+        Value: true
+      Axis: Z
+      Channel Name: intensity
+      Class: rviz/PointCloud2
+      Color: 255; 255; 255
+      Color Transformer: Intensity
+      Decay Time: 0
+      Enabled: true
+      Invert Rainbow: false
+      Max Color: 255; 255; 255
+      Max Intensity: 4096
+      Min Color: 0; 0; 0
+      Min Intensity: 0
+      Name: PointCloud2
+      Position Transformer: XYZ
+      Queue Size: 10
+      Selectable: true
+      Size (Pixels): 3
+      Size (m): 0.01
+      Style: Flat Squares
+      Topic: /move_base_node/HANPLocalPlanner/trajectory_cloud
+      Use Fixed Frame: true
+      Use rainbow: true
+      Value: true
+  Enabled: true
+  Global Options:
+    Background Color: 255; 255; 255
+    Fixed Frame: map
+    Frame Rate: 30
+  Name: root
+  Tools:
+    - Class: rviz/Interact
+      Hide Inactive Objects: true
+    - Class: rviz/MoveCamera
+    - Class: rviz/Select
+    - Class: rviz/FocusCamera
+    - Class: rviz/Measure
+    - Class: rviz/SetInitialPose
+      Topic: /initialpose
+    - Class: rviz/SetGoal
+      Topic: /move_base_simple/goal
+    - Class: rviz/PublishPoint
+      Single click: true
+      Topic: /clicked_point
+  Value: true
+  Views:
+    Current:
+      Class: rviz/XYOrbit
+      Distance: 32.2801
+      Enable Stereo Rendering:
+        Stereo Eye Separation: 0.06
+        Stereo Focal Distance: 1
+        Swap Stereo Eyes: false
+        Value: false
+      Focal Point:
+        X: 4.69162
+        Y: 3.6302
+        Z: 1.90735e-06
+      Name: Current View
+      Near Clip Distance: 0.01
+      Pitch: 1.5698
+      Target Frame: <Fixed Frame>
+      Value: XYOrbit (rviz)
+      Yaw: 4.69041
+    Saved: ~
+Window Geometry:
+  Displays:
+    collapsed: false
+  Height: 1056
+  Hide Left Dock: false
+  Hide Right Dock: false
+  QMainWindow State: 000000ff00000000fd00000004000000000000014e000003dafc0200000008fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006400fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df000003800000016bfb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c0061007900730100000028000003da000000dd00fffffffb0000002000730065006c0065006300740069006f006e00200062007500660066006500720200000138000000aa0000023a00000294fb00000014005700690064006500530074006500720065006f02000000e6000000d2000003ee0000030bfb0000000c004b0069006e0065006300740200000186000001060000030c00000261000000010000011f000003dafc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a005600690065007700730100000028000003da000000b000fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000007800000003efc0100000002fb0000000800540069006d0065000000000000000780000002f600fffffffb0000000800540069006d00650100000000000004500000000000000000000004c6000003da00000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  Selection:
+    collapsed: false
+  Time:
+    collapsed: false
+  Tool Properties:
+    collapsed: false
+  Views:
+    collapsed: false
+  Width: 1855
+  X: 1985
+  Y: 24

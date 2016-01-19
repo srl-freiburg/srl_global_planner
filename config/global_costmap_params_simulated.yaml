@@ -5,7 +5,7 @@ publish_frequency: 10.0
 # resolution of the map in meters/cell
 resolution: 0.20
 # global costmap will operate in the map frame, transform between this and robot-base frame must be available
-global_frame: occ_map
+global_frame: map
 
 static_map: true
 
@@ -21,22 +21,20 @@ origin_y: 0.0
 # for global plannign we will use static-map, obstacles, inflation and hanp layers
 plugins:
  - {name: static_map, type: "costmap_2d::StaticLayer"}
-# - {name: obstacles, type: "costmap_2d::ObstacleLayer"}
+ - {name: obstacles, type: "costmap_2d::ObstacleLayer"}
  - {name: inflater, type: "costmap_2d::InflationLayer"}
  # - {name: social_compliance, type: "social_compliance_layer::SocialComplianceLayer"}
 
-# NOTE!! that including obstacles it may happen that in narrow corridors echos from the laser scanner may appear as obstacles!
-# Not needed anyway cause using the static map layer
-#obstacles:
-#     observation_sources: /spencer/sensors/laser_rear/echo0  /spencer/sensors/laser_front/echo0
-#     /spencer/sensors/laser_rear/echo0: {data_type: LaserScan, sensor_frame: /laser_rear_link, marking: true, clearing: true}
-#     /spencer/sensors/laser_front/echo0: {data_type: LaserScan, sensor_frame: /laser_front_link, marking: true, clearing: true}
 
-# inflater:
-#     observation_sources: /spencer/sensors/laser_rear/echo0 /spencer/sensors/laser_front/echo0
-#     /spencer/sensors/laser_rear/echo0: {data_type: LaserScan, sensor_frame: /laser_rear_link, marking: true, clearing: true, map_type: costmap}
-#     /spencer/sensors/laser_front/echo0: {data_type: LaserScan, sensor_frame: /laser_front_link, marking: true, clearing: true, map_type: costmap}
-#     inflation_radius: 0.1
+obstacles:
+    observation_sources: /pedsim/obstacle_cloud_global /pedsim/people_cloud_global
+    /pedsim/obstacle_cloud_global: {data_type: PointCloud, sensor_frame: odom, marking: true, clearing: true, obstacle_range: 30, raytrace_range: 30, map_type: costmap}
+    /pedsim/people_cloud_global: {data_type: PointCloud, sensor_frame: odom, marking: true, clearing: true, obstacle_range: 30, raytrace_range: 30, map_type: costmap}
+
+inflater:
+    observation_sources: /pedsim/obstacle_cloud_global /pedsim/people_cloud_global
+    /pedsim/obstacle_cloud_global: {data_type: PointCloud, sensor_frame: odom, marking: true, clearing: true, obstacle_range: 30, raytrace_range: 30, map_type: costmap}
+    /pedsim/people_cloud_global: {data_type: PointCloud, sensor_frame: odom, marking: true, clearing: true, obstacle_range: 30, raytrace_range: 30, map_type: costmap}
 
 # social_compliance:
 #     observation_sources: /spencer/perception/tracked_persons_filtered_by_distance /spencer/perception/tracked_groups
